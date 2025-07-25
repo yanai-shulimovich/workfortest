@@ -1,13 +1,129 @@
-        <section class="section" id="tableau">
-            <h2>sales dashboard</h2>
-            <!-- Tableau Embedding API v3 -->
-            <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
-            <tableau-viz 
-                id="tableauViz"
-                src="https://public.tableau.com/views/work1_17534377712020/sheet4?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
-                toolbar="bottom"
-                hide-tabs
-                width="100%"
-                height="800">
-            </tableau-viz>
-        </section>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דשבורד ניתוח נתונים</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .content h2 {
+            color: #4b6cb7;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .content p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        .tableau-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            .content h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>דשבורד ניתוח נתונים</h1>
+        </header>
+        <div class="content">
+            <h2>משמעות הגרף המוצג</h2>
+            <p>הגרף המוצג מציג ניתוח של נתוני מכירות או ביצועים עבור חמישה מותגים (EduToys, KidsWorld, PlayFun, SmartPlay, ToyZone) בחמישה אזורים שונים. הגרף מראה את התפלגות המכירות באמצעות עמודות צבעוניות, כאשר כל צבע מייצג מותג שונה, והגובה הכולל של כל עמודה משקף את סך המכירות או הביצועים הכוללים באזור מסוים. סך כל הנתונים מגיע ל-145,006,221.359 יחידות. ניתן לזהות מגמות כגון אזורים עם ביצועים גבוהים (כמו האזור הראשון עם כ-150,000 יחידות) ואזורים עם ביצועים נמוכים יותר, תוך אפשרות להשוואה בין המותגים בכל אזור.</p>
+            
+            <div class="tableau-container">
+                <div id="tableauViz"></div>
+            </div>
+            
+            <a href="https://public.tableau.com/views/work1_17534377712020/sheet4?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" class="back-button">SALE DESHBOARD</a>
+        </div>
+        <footer>
+            <p>© 2025 מערכת ניתוח נתונים. כל הזכויות שמורות.</p>
+        </footer>
+    </div>
+
+    <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
+    <script>
+        function initViz() {
+            const containerDiv = document.getElementById("tableauViz");
+            const vizUrl = "https://public.tableau.com/views/work1_17534377712020/sheet4?:language=en-US&:display_count=n&:origin=viz_share_link";
+            const options = {
+                hideTabs: true,
+                hideToolbar: true,
+                width: "100%",
+                height: "600px",
+                onFirstInteractive: function () {
+                    console.log("Tableau visualization loaded successfully.");
+                }
+            };
+            const viz = new tableau.Viz(containerDiv, vizUrl, options);
+        }
+
+        document.addEventListener("DOMContentLoaded", initViz);
+    </script>
+</body>
+</html>
